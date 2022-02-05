@@ -17,9 +17,9 @@ SA1_map_info = {
     "height" : 20,
     "walls" : [LineString([(SA1_cor_left,0),(SA1_cor_left,SA1_front_left)]), 
             LineString([(SA1_cor_right,0),(SA1_cor_right,SA1_front_right)]),
+            LineString([(-SA1_width,SA1_wall),(SA1_width,SA1_wall)]),
             LineString([(SA1_cor_left,SA1_front_left),(-SA1_width,SA1_front_left)]),
-            LineString([(SA1_cor_right,SA1_front_right),(SA1_width,SA1_front_right)]),
-            LineString([(-SA1_width,SA1_wall),(SA1_width,SA1_wall)])],
+            LineString([(SA1_cor_right,SA1_front_right),(SA1_width,SA1_front_right)])],
     "corners" : [Point(SA1_cor_left+corner_offset,SA1_front_left+corner_offset), Point(SA1_cor_right-corner_offset,SA1_front_right+corner_offset)],
     "diffraction_angle_threshold" : math.pi / 3,
 
@@ -38,9 +38,9 @@ SA2_map_info = {
     "height" : 20,
     "walls" : [LineString([(SA2_cor_left,0),(SA2_cor_left,SA2_front_left)]), 
             LineString([(SA2_cor_right,0),(SA2_cor_right,SA2_front_right)]),
+            LineString([(-SA2_width,SA2_wall),(SA2_width,SA2_wall)]),
             LineString([(SA2_cor_left,SA2_front_left),(-SA2_width,SA2_front_left)]),
-            LineString([(SA2_cor_right,SA2_front_right),(SA2_width,SA2_front_right)]),
-            LineString([(-SA2_width,SA2_wall),(SA2_width,SA2_wall)])],
+            LineString([(SA2_cor_right,SA2_front_right),(SA2_width,SA2_front_right)])],
     "corners" : [Point(SA2_cor_left+corner_offset,SA2_front_left+corner_offset), Point(SA2_cor_right-corner_offset,SA2_front_right+corner_offset)],
     "diffraction_angle_threshold" : math.pi / 3,
 

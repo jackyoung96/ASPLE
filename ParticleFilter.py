@@ -48,7 +48,7 @@ class Particle:
         self.head = random.choice([0, math.pi])
         # self.head = random.uniform(0,2*math.pi)
         self.v = random.random()*3 # 0~10m/s
-        self.w_head = 0
+        self.w_head = self.v/2.8*math.tan(math.radians((random.random()-0.5)*10))
     
     def set_weight(self,weight=[1,1,1,1]):
         self.w_direct, self.w_reflect_1st, self.w_reflect_2nd, self.w_diffract = weight
@@ -189,6 +189,7 @@ class Map:
         """
         reflects = []
         lines = []
+
         for wall1, wall2 in list(permutations(self.walls,2)):
             p_prime = mirror_point(p, wall1)
             o_prime = mirror_point(self.ego_vehicle, wall2)
@@ -299,17 +300,18 @@ class ParticleFilter:
         Resampling
         Random particle with probability of epsilon
         """
-        sample_idx = random.choices(population=range(0,self.n), weights=self.weight, k=self.n)
+        k = int((self.n)*(1-self.epsilon))
+        sample_idx = random.choices(population=range(0,self.n), weights=self.weight, k=k)
 
         particles = []
         for idx in sample_idx:
-            if not random.random() < self.epsilon:
-                particles.append(deepcopy(self.particles[idx]))
-            else:
-                # random particle with probability of epsilon
-                p = Particle()
-                p.random_initialize(self.Map)
-                particles.append(p)
+            particles.append(deepcopy(self.particles[idx]))
+
+        # random particle with probability of epsilon
+        for _ in range(self.n-k):
+            p = Particle()
+            p.random_initialize(self.Map)
+            particles.append(p)
 
         self.particles = particles
 
@@ -377,12 +379,15 @@ class ParticleFilter:
 
         plt.axis("equal")
         plt.title("%.2f sec"%self.time)
-        plt.xlim(-self.Map.width/2, self.Map.width/2)
-        plt.ylim(0, self.Map.height)
-        plt.xticks(range(int(-self.Map.width/2), int(self.Map.width/2)+1, 5))
-        plt.yticks(range(0,self.Map.height+1,5))
+        # plt.xlim(-self.Map.width/2, self.Map.width/2)
+        # plt.ylim(0, self.Map.height)
+        # plt.xticks(range(int(-self.Map.width/2), int(self.Map.width/2)+1, 5))
+        # plt.yticks(range(0,self.Map.height+1,5))
+        plt.xticks([])
+        plt.yticks([])
+
         
-        plt.savefig(os.path.join(save_dir,'test_%06d.png'%(self.time*100)))
+        plt.savefig(os.path.join(save_dir,'test_%06d.png'%(self.time*100)), bbox_inches = 'tight', pad_inches = 0)
         plt.close()
 
 
