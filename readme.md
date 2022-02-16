@@ -2,6 +2,12 @@
 
 This is the repository of the paper "Blind-spot detection through sound". The experimental data, code, and the result images are contained.
 
+<figure>
+<img width="281" alt="image" src="https://user-images.githubusercontent.com/57203764/154308589-1d2c371c-a452-4b1e-9274-6c79be547a69.png">
+<figcaption>The example of the direct, reflected, and diffracted sound path</figcaption>
+</figure>
+
+
 ## Dataset
 
 The dataset is from the reference study. It is the github repository of the paper "Hearing What You Cannot See: Acoustic Vehicle Detection Around Corners". The details are in the below link.  
@@ -41,6 +47,7 @@ python plotVarianceImg.py
 
 ## Result images
 
+![image](https://user-images.githubusercontent.com/57203764/154308919-bcc5546e-b21e-4972-b696-429c5f6692a8.png)
 ---
 ---
 
